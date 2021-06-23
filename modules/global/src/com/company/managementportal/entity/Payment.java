@@ -7,7 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Table(name = "MANAGEMENTPORTAL_PAYMENT", indexes = {
-        @Index(name = "IDX_MANAGEMENTPORTAL_PAYMENT_TRANSACTION_CODE", columnList = "TRANSACTION_CODE")
+        @Index(name = "IDX_MANAGEMENTPORTAL_PAYMENT_TRANSACTION_CODE", columnList = "TRANSACTION_CODE"),
+        @Index(name = "IDX_MANAGEMENTPORTAL_PAYMENT_PAYMENT_TYPE", columnList = "PAYMENT_TYPE")
 })
 @Entity(name = "managementportal_Payment")
 @NamePattern("%s %s|paymentType,transactionCode")
