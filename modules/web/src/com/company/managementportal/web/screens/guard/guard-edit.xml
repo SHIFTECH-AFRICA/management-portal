@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://guardEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.managementportal.web.screens.guard">
+    <data>
+        <instance id="guardDc"
+                  class="com.company.managementportal.entity.Guard">
+            <view extends="_local"/>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="guardDc">
+            <column width="350px">
+                <textField id="firstNameField" property="firstName"/>
+                <textField id="lastNameField" property="lastName"/>
+                <textField id="postedSectionField" property="postedSection"/>
+                <textField id="phoneNumberField" property="phoneNumber"/>
+                <checkBox id="activeField" property="active"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

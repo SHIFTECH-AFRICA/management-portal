@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://guardBrowse.caption"
+        focusComponent="guardsTable"
+        messagesPack="com.company.managementportal.web.screens.guard">
+    <data readOnly="true">
+        <collection id="guardsDc"
+                    class="com.company.managementportal.entity.Guard">
+            <view extends="_local"/>
+            <loader id="guardsDl">
+                <query>
+                    <![CDATA[select e from managementportal_Guard e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="guardsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="guardsTable"
+                dataLoader="guardsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="guardsTable"
+                    width="100%"
+                    dataContainer="guardsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="add" type="add"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="firstName"/>
+                <column id="lastName"/>
+                <column id="postedSection"/>
+                <column id="phoneNumber"/>
+                <column id="active"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="guardsTable.create"/>
+                <button id="editBtn" action="guardsTable.edit"/>
+                <button id="removeBtn" action="guardsTable.remove"/>
+                <button id="refreshBtn" action="guardsTable.refresh"/>
+                <button id="addBtn" action="guardsTable.add"/>
+                <button id="excelBtn" action="guardsTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

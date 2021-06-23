@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://attendanceBrowse.caption"
+        focusComponent="attendancesTable"
+        messagesPack="com.company.managementportal.web.screens.attendance">
+    <data readOnly="true">
+        <collection id="attendancesDc"
+                    class="com.company.managementportal.entity.Attendance">
+            <view extends="_local">
+                <property name="guard" view="_minimal">
+                    <property name="lastName"/>
+                    <property name="postedSection"/>
+                    <property name="phoneNumber"/>
+                    <property name="active"/>
+                </property>
+            </view>
+            <loader id="attendancesDl">
+                <query>
+                    <![CDATA[select e from managementportal_Attendance e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="attendancesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="attendancesTable"
+                dataLoader="attendancesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="attendancesTable"
+                    width="100%"
+                    dataContainer="attendancesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+                <action id="add" type="add"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="startTime"/>
+                <column id="guard"/>
+                <column id="type"/>
+                <column id="duration"/>
+                <column id="endTime"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="attendancesTable.create"/>
+                <button id="editBtn" action="attendancesTable.edit"/>
+                <button id="removeBtn" action="attendancesTable.remove"/>
+                <button id="refreshBtn" action="attendancesTable.refresh"/>
+                <button id="addBtn" action="attendancesTable.add"/>
+                <button id="excelBtn" action="attendancesTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://paymentBrowse.caption"
+        focusComponent="paymentsTable"
+        messagesPack="com.company.managementportal.web.screens.payment">
+    <data readOnly="true">
+        <collection id="paymentsDc"
+                    class="com.company.managementportal.entity.Payment">
+            <view extends="_local">
+                <property name="client" view="_minimal">
+                    <property name="company"/>
+                    <property name="phoneNumber"/>
+                </property>
+                <property name="guard" view="_minimal">
+                    <property name="postedSection"/>
+                    <property name="phoneNumber"/>
+                </property>
+                <property name="supplier" view="_minimal">
+                    <property name="email"/>
+                </property>
+            </view>
+            <loader id="paymentsDl">
+                <query>
+                    <![CDATA[select e from managementportal_Payment e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="paymentsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="paymentsTable"
+                dataLoader="paymentsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="paymentsTable"
+                    width="100%"
+                    dataContainer="paymentsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="amount"/>
+                <column id="transactionCode"/>
+                <column id="paymentType"/>
+                <column id="client"/>
+                <column id="guard"/>
+                <column id="supplier"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="paymentsTable.create"/>
+                <button id="editBtn" action="paymentsTable.edit"/>
+                <button id="removeBtn" action="paymentsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

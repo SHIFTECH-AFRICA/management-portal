@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://attendanceEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.managementportal.web.screens.attendance">
+    <data>
+        <instance id="attendanceDc"
+                  class="com.company.managementportal.entity.Attendance">
+            <view extends="_local">
+                <property name="guard" view="_minimal">
+                    <property name="lastName"/>
+                    <property name="postedSection"/>
+                    <property name="phoneNumber"/>
+                    <property name="active"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="attendanceDc">
+            <column width="350px">
+                <dateField id="startTimeField" property="startTime"/>
+                <pickerField id="guardField" property="guard">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <textField id="typeField" property="type"/>
+                <textField id="durationField" property="duration"/>
+                <dateField id="endTimeField" property="endTime"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
