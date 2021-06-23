@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
     <menu id="application-managementportal" insertBefore="administration" caption="mainMsg://menu_config.application-managementportal">
+        <item screen="managementportal_Client.browse" caption="mainMsg://menu_config.managementportal_Client.browse"/>
+        <item screen="managementportal_Supplier.browse"
+              caption="mainMsg://menu_config.managementportal_Supplier.browse"/>
+        <item screen="managementportal_Guard.browse" caption="mainMsg://menu_config.managementportal_Guard.browse"/>
+        <item screen="managementportal_Attendance.browse"
+              caption="mainMsg://menu_config.managementportal_Attendance.browse"/>
+        <item screen="managementportal_Payment.browse" caption="mainMsg://menu_config.managementportal_Payment.browse"/>
     </menu>
 </menu-config>

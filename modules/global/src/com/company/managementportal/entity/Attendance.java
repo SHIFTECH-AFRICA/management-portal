@@ -5,6 +5,7 @@ import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -18,6 +19,7 @@ public class Attendance extends StandardEntity {
 
     @NotNull
     @Column(name = "START_TIME", nullable = false)
+    @FutureOrPresent
     private LocalDateTime startTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -64,9 +66,8 @@ public class Attendance extends StandardEntity {
         this.startTime = startTime;
     }
 
-    @Transient
-    @MetaProperty(related = {"startDate", "duration"})
-    public LocalDateTime getEndDate() {
-        return (startDate != null && duration != null) ? startDate.plusHours(duration) : null;
+    @MetaProperty(related = {"startTime", "duration"})
+    public LocalDateTime getEndTime() {
+        return (startTime != null && duration != null) ? startTime.plusHours(duration) : null;
     }
 }
