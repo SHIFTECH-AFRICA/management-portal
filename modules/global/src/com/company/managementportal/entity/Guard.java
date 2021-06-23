@@ -10,8 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Table(name = "MANAGEMENTPORTAL_GUARD", indexes = {
-        @Index(name = "IDX_MANAGEMENTPORTAL_GUARD_FIRST_NAME", columnList = "FIRST_NAME"),
-        @Index(name = "IDX_MANAGEMENTPORTAL_GUARD_PHONE_NUMBER", columnList = "PHONE_NUMBER")
+        @Index(name = "IDX_MANAGEMENTPORTAL_GUARD_FIRST_NAME", columnList = "FIRST_NAME")
 })
 @Entity(name = "managementportal_Guard")
 @NamePattern("%s|firstName")
@@ -31,11 +30,19 @@ public class Guard extends StandardEntity {
 
     @NotNull
     @Column(name = "PHONE_NUMBER", nullable = false, unique = true)
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     @NotNull
     @Column(name = "ACTIVE", nullable = false)
     private Boolean active = false;
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
     public Boolean getActive() {
         return active;
@@ -43,14 +50,6 @@ public class Guard extends StandardEntity {
 
     public void setActive(Boolean active) {
         this.active = active;
-    }
-
-    public Integer getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public String getPostedSection() {
